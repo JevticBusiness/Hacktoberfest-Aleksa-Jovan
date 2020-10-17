@@ -21,6 +21,13 @@
     justify-content: center;
 }
 
+.feedRoute {
+    min-height: calc(100vh - 70px);
+    width: 96%;
+    margin-top: 70px;
+    color: #fff;
+}
+
 @media screen and (max-width: 800px) {
     .content {
         width: 100%;
@@ -43,6 +50,13 @@
         bottom: 0;
         background: red;
         width: 100%;
+    }
+
+    .feedRoute {
+        min-height: calc(100vh - 70px);
+        width: 100%;
+        margin-top: 70px;
+        color: #fff;
     }
 }
 
@@ -71,6 +85,12 @@
         background: $grey;
         grid-area: feed;
     }
+    .feedRoute {
+        min-height: calc(100vh - 70px);
+        width: 96%;
+        margin-top: 70px;
+        color: #fff;
+    }
 }
 
 @media screen and (min-width: 1240px) {
@@ -82,13 +102,7 @@
 .gap {
     height: 70px;
 }
-  
-.feedRoute {
-    min-height: calc(100vh - 70px);
-    width: 96%;
-    margin-top: 70px;
-    color: #fff;
-}
+
 
 .fourZeroFourScreen {
     display: flex;
