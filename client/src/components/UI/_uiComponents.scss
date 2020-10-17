@@ -16,11 +16,9 @@
 
 .feed {
     background: $grey;
-    min-height: 300vh;
     grid-area: feed;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
 }
 
 @media screen and (max-width: 800px) {
@@ -37,7 +35,6 @@
 
     .feed {
         background: $grey;
-        min-height: 300vh;
         width: 100%;
     }
 
@@ -72,7 +69,6 @@
     
     .feed {
         background: $grey;
-        min-height: 300vh;
         grid-area: feed;
     }
 }
@@ -88,6 +84,21 @@
 }
   
 .feedRoute {
-    height: calc(100% - 70px);
+    min-height: calc(100vh - 70px);
     width: 96%;
+    margin-top: 70px;
+    color: #fff;
+}
+
+.fourZeroFourScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    p {
+        font-size: 20px;
+        color: #ccc;
+        text-align: center;
+    }
 }

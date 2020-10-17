@@ -13,6 +13,7 @@ import BottomNav from './components/UI/BottomNav'
 //* Screens import
 import HomeScreen from './screens/HomeScreen'
 import ExploreScreen from './screens/ExploreScreen'
+import FourZeroFour from './screens/FourZeroFour'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={HomeScreen} />
               <Route path="/explore" exact component={ExploreScreen} />
+              <Route component={FourZeroFour} />
             </Switch>
           </div>
         </div>

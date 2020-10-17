@@ -1,6 +1,6 @@
-require('../routing/route');
+require('../routing/posts');
 const Post = require('../models/Post');
-const { get } = require('../routing/route');
+const { get } = require('../routing/posts');
 /**
  *  @param {object} req
  *  @param {object} res

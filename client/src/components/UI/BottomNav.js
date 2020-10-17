@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     }
 });
 
-const navTheme = createMuiTheme({
+export const navTheme = createMuiTheme({
     palette: {
         primary: {
             main: '#f50057'
