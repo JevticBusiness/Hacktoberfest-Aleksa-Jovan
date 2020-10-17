@@ -14,15 +14,9 @@ const posts_scheme = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-<<<<<<< HEAD
   memeImage: { 
     type: String, 
     required: true 
-=======
-  img_src: {
-    data: Buffer,
-    contentType: String,
->>>>>>> 0ed9edd9bd4d06183f062f5095ac09fd2a943ce3
   }
 });
 
