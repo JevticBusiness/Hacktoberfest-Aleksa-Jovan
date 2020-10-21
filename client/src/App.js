@@ -8,12 +8,11 @@ import Header from './components/UI/Header'
 import Sidebar from './components/UI/Sidebar'
 import BottomNav from './components/UI/BottomNav'
 
-//* API Components import
-
 //* Screens import
 import HomeScreen from './screens/HomeScreen'
 import ExploreScreen from './screens/ExploreScreen'
-import FourZeroFour from './screens/FourZeroFour'
+import FourZeroFourScreen from './screens/FourZeroFour'
+import UploadScreen from './screens/UploadScreen'
 
 function App() {
   return (
@@ -26,7 +25,8 @@ function App() {
             <Switch>
               <Route path="/" exact component={HomeScreen} />
               <Route path="/explore" exact component={ExploreScreen} />
-              <Route component={FourZeroFour} />
+              <Route path="/upload" exact component={UploadScreen} />
+              <Route component={FourZeroFourScreen} />
             </Switch>
           </div>
         </div>

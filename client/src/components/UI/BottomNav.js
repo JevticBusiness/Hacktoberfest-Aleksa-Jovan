@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
-        height: '65px',
+        height: '75px',
         width: '100%',
         backgroundColor: '#202020',
         "&$selected": {
@@ -50,11 +50,11 @@ export default function LabelBottomNavigation() {
   return (
     <ThemeProvider theme={navTheme}>
       <div className="bottomNav">
-            <BottomNavigation value={value} onChange={handleChange} color="secondary" className={classes.root}>
+            <BottomNavigation showLabels={true} value={value} onChange={handleChange} color="secondary" className={classes.root}>
                 <BottomNavigationAction className={classes.link} component={Link} to="/" label="Home" value="home" icon={<HomeIcon />} />
                 <BottomNavigationAction className={classes.link} component={Link} to="/explore" label="Explore" value="explore" icon={<ExploreIcon />} />
                 <BottomNavigationAction className={classes.link} component={Link} to="/upload" label="Upload" value="upload" icon={<AddCircleIcon />} />
-                <BottomNavigationAction className={classes.link} component={Link} to="/profile" label="My profile" value="account" icon={<AccountCircleIcon />} />
+                <BottomNavigationAction className={classes.link} component={Link} to="/profile" label="Account" value="account" icon={<AccountCircleIcon />} />
             </BottomNavigation>
       </div>
     </ThemeProvider>

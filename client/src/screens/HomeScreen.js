@@ -14,13 +14,13 @@ const HomeScreen = () => {
         const data = await fetch(`/api/posts`)
         const items = await data.json()
         setItems(items)
-        console.log(items)
     }
 
     return(
         <div className="feedRoute">
             { items.map(item => (
                 <Meme 
+                    key={ item._id }
                     title = { item.title }
                     memeImage = { item.memeImage }
                     description = { item.description }
