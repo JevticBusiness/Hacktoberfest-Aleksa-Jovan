@@ -1,65 +1,93 @@
 require('../routing/posts');
 const Post = require('../models/Post');
-const { get } = require('../routing/posts');
-/**
- *  @param {object} req
- *  @param {object} res
- */
+const multer = require('multer');
+const { remove } = require('../models/Post');
 
-const postPost = ('/', async (req, res) => {
+//* Getting all posts
+const postsGetAll = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+    res.json(posts)
+  } catch(err) {
+    res.status(500).json({ message: err.message })
+  }
+}
+
+//*Getting single post
+const getSinglePost = async (req, res, next) => {
+  let post;
+
+  try { 
+    post = await Post.findById(req.params.id); 
+    if (!post) {
+      return res.status(404).json({ message: 'Sorry, the post you are looking for does not exist' });
+    }
+
+    res.post = post;
+    res.json(res.post);
+  } catch(err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+//* Creating a post  
+const createPost = async (req, res, next) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    img_src: req.body.img_src
+    memeImage: req.file.path
   });
+  
   try {
-    const newPost = await post.save()
-    res.status(201).json(newPost);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+      const newPost = await post.save();
+      res.status(201).json(newPost);
+  } catch(err) {
+    res.status(400).json({ message: 'Something went wrong, please try again' });
   }
-});
+} 
 
-const getPost = ('/', async (req, res) => {
-  try {
-    const posts = await Post.find();
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+//* Updating a post
+const updatePost = async (req, res, next) => {
+  const {
+    title,
+    description,
+  } = req.body;
 
-const deletePost = ('/:id', getPost, async (req, res) => {
-  try {
-    await res.post.remove();
-    res.json({ message: 'Sucessfully deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+  const post = await Post.findById(req.params.id);
 
-const getSinglePost = ('/:id', getPost, (req, res) => {
-  res.json(res.post);
-});
-
-const patchPost = ('/:id', getPost, async (req, res) => {
-  if (req.body.title != null) {
-    res.post.title = req.body.title
-    req.body.description = req.body.description
-    req.body.img_src
-  }
-  try {
-    const updatedPost = await res.post.save();
+  if (post) {
+    post.title = title;
+    post.description = description;
+    
+    const updatedPost = await post.save();
     res.json(updatedPost);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  } else {
+    res.status(404).json({ message: 'The post you are looking for does not exist' });
   }
-});
+}
 
+//* Deleting a post
+const removePost = async (req, res, next) => {
+  const post = await Post.findById(req.params.id);
+
+  if (post) {
+    try {
+      await post.remove();
+      res.json({ message: 'Sucessfully deleted' });
+    } catch(err) {
+      res.status(500).json({ message: err.message });
+    }
+  } else {
+    res.status(404).json({ message: 'The post you are looking for does not exist' });
+  }
+}
+
+
+//? Controllers export 
 module.exports = {
-  postPost: postPost,
-  getPost: getPost,
-  deletePost: deletePost,
+  postsGetAll: postsGetAll,
   getSinglePost: getSinglePost,
-  patchPost: patchPost
-};
+  createPost: createPost,
+  updatePost: updatePost,
+  deletePost: removePost
+}
